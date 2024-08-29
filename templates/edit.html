@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%=title%></title>
+    <link rel="shortcut icon" href="code.svg" type="image/x-icon" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.34.1/min/vs/editor/editor.main.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/prism.css" />
+    <link rel="stylesheet" href="../css/edit.css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="wrapper__main">
+        <div class="wrapper__main_layout">
+          <div class="wrapper__main_layout-content">
+            <div class="wrapper-left">
+              <ul>
+                <%- navHTML %>
+              </ul>
+            </div>
+            <div class="wrapper-content <%- isMd ? 'md' : ''%>">
+              <h1><%= title %></h1>
+              <%-html%>
+            </div>
+            <div class="wrapper-right">
+              <ul>
+                <li>
+                  <svg t="1724940373953" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="7489" width="200" height="200"><path d="M156.862 567.733C117.449 544.533 91 501.673 91 452.633c0-39.369 17.383-76.73 47.5-102.09L401.002 129.51c64.147-54.013 157.866-54.013 222.013 0l262.501 221.033c56.388 47.48 63.606 131.679 16.121 188.062a133.416 133.416 0 0 1-34.489 29.108 36.31 36.31 0 0 1 1.755 11.187c0 241.345-115.528 356.862-356.894 356.862-241.366 0-356.895-115.517-356.895-356.862 0-3.896 0.614-7.648 1.749-11.167z m70.973 18.368c1.975 195.986 85.367 276.983 284.173 276.983 198.805 0 282.198-80.997 284.173-276.983H227.835z m348.36-400.998c-37.091-31.233-91.283-31.233-128.375 0l-262.5 221.033a60.787 60.787 0 0 0-21.635 46.498c0 33.573 27.219 60.789 60.794 60.789h575.057a60.797 60.797 0 0 0 46.502-21.633c21.628-25.68 18.34-64.029-7.342-85.654l-262.5-221.033z" fill="currentColor" p-id="7490"></path></svg>
+                </li>
+                <li>
+                  <svg t="1724941383990" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="24071" width="200" height="200"><path d="M929.797838 239.123886L545.204894 21.893337c-9.973631-5.959853-19.947262-8.027557-31.866968-8.027557s-21.893337 1.946074-31.866967 8.027557L96.878014 239.123886c-19.947262 11.919705-31.866968 31.866968-31.866968 55.828009v434.461099c0 21.893337 11.919705 43.786673 31.866968 55.828008l382.64687 217.23055c9.973631 5.959853 21.893337 8.027557 31.866968 8.027557 11.919705 0 21.893337-1.946074 31.866967-8.027557l382.646871-217.23055c19.947262-11.919705 31.866968-31.866968 31.866967-55.828008V294.830265c4.013778-21.893337-8.027557-43.786673-27.974819-55.706379zM901.944649 731.237439L523.311557 950.535693c-1.946074 1.946074-8.027557 5.959853-9.973631 5.959853-1.946074 0-8.027557-4.013778-9.973631-5.959853L124.731203 731.237439V292.884191L503.364295 73.707566c1.946074 0 8.027557-5.959853 9.973631-5.959852 1.946074 0 8.027557 4.013778 9.973631 5.959852L901.944649 292.884191v438.353248zM326.028269 376.565388c-13.987409-7.905927-31.866968-4.013778-39.894524 9.973631-8.027557 11.919705-4.013778 29.920893 9.973631 35.880746l185.363583 109.588312v199.229362s13.987409 19.947262 29.920893 19.947262c15.933484 0 29.920893-19.947262 29.920893-19.947262V532.008077l185.363582-109.588312c13.987409-8.027557 17.879558-23.961041 9.973631-35.880746-8.027557-11.919705-25.907115-17.879558-39.894524-9.973631l-187.309657 99.614681-183.417508-99.614681z m0 0" p-id="24072" fill="currentColor"></path></svg>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.34.1/min/vs/loader.js"></script>
+    <script src="../js/prism.min.js"></script>
+    <script src="../js/edit.js"></script>
+  </body>
+</html>

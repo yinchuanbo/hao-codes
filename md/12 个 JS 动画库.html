@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>12 个最佳 JavaScript 动画库</title>
+    <link rel="shortcut icon" href="code.svg" type="image/x-icon" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.34.1/min/vs/editor/editor.main.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/prism.css" />
+    <link rel="stylesheet" href="../css/edit.css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="wrapper__main">
+        <div class="wrapper__main_layout">
+          <div class="wrapper__main_layout-content">
+            <div class="wrapper-left">
+              <ul>
+                <li class="active"><a title="12 个 JS 动画库" href="/md/12 个 JS 动画库.html">01 12 个 JS 动画库</a></li><li class=""><a title="Fuse.js 轻量高效的模糊搜索库" href="/md/Fuse.js 轻量高效的模糊搜索库.html">02 Fuse.js 轻量高效的模糊搜索库</a></li><li class=""><a title="Intro.js 神奇用户引导库" href="/md/Intro.js 神奇用户引导库.html">03 Intro.js 神奇用户引导库</a></li><li class=""><a title="Masonry.js 轻松实现瀑布流" href="/md/Masonry.js 轻松实现瀑布流.html">04 Masonry.js 轻松实现瀑布流</a></li><li class=""><a title="Slidev 新一代幻灯片制作工具" href="/md/Slidev 新一代幻灯片制作工具.html">05 Slidev 新一代幻灯片制作工具</a></li><li class=""><a title="前端数据可视化常用工具大盘点" href="/md/前端数据可视化常用工具大盘点.html">06 前端数据可视化常用工具大盘点</a></li>
+              </ul>
+            </div>
+            <div class="wrapper-content md">
+              <h1>12 个最佳 JavaScript 动画库</h1>
+              <h3>1. GSAP（GreenSock 动画平台）：动画强国</h3>
+<p>GSAP 就像动画库中的瑞士军刀。它坚固耐用、用途广泛，深受全球专业人士的喜爱。</p>
+<ul>
+<li><p><a href="https://gsap.com/">https://gsap.com/</a></p>
+</li>
+<li><p>例子：</p>
+</li>
+</ul>
+<pre><code class="language-js">gsap.to(&quot;.box&quot;, { duration: 2, x: 300, rotation: 360, ease: &quot;bounce&quot; });
+</code></pre>
+<p>这个简单的代码使盒子元素向右移动 300 像素，同时旋转 360 度并具有弹性效果。</p>
+<h3>2. Anime.js：简单但强大</h3>
+<p>Anime.js 证明，有时，少即是多。其轻量化特性并不会影响功率。</p>
+<ul>
+<li><p><a href="https://animejs.com/">https://animejs.com/</a></p>
+</li>
+<li><p>例子：</p>
+</li>
+</ul>
+<pre><code class="language-js">anime({
+  targets: &quot;.circle&quot;,
+  translateX: 250,
+  scale: 2,
+  duration: 3000,
+});
+</code></pre>
+<p>该动画在 3 秒内平滑移动并放大圆形元素。</p>
+<h3>3. Velocity.js：速度与优雅的结合</h3>
+<p>Velocity.js 注重性能而不牺牲功能。这就像将火箭绑在您的动画上一样！</p>
+<ul>
+<li><p><a href="http://velocityjs.org/">http://velocityjs.org/</a></p>
+</li>
+<li><p>例子：</p>
+</li>
+</ul>
+<pre><code class="language-js">$(&quot;.element&quot;).velocity(
+  {
+    translateY: &quot;200px&quot;,
+    rotateZ: &quot;45deg&quot;,
+  },
+  1000
+);
+</code></pre>
+<p>此代码仅在一秒钟内将元素向下平移 200 像素并旋转 45 度。</p>
+<h3>4. Three.js：将 3D 带入 Web</h3>
+<p>Three.js 开辟了一个全新的维度——字面上！它是您在浏览器中创建令人惊叹的 3D 图形的门户。</p>
+<ul>
+<li><p><a href="https://threejs.org">https://threejs.org</a></p>
+</li>
+<li><p>例子：</p>
+</li>
+</ul>
+<pre><code class="language-js">const geometry = new THREE.BoxGeometry();
+const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+const cube = new THREE.Mesh(geometry, material);
+scene.add(cube);
+</code></pre>
+<p>此代码片段创建了一个简单的绿色 3D 立方体，您可以对其进行操作和设置动画。</p>
+<h3>5. Lottie：动画变得简单</h3>
+<p>Lottie 将复杂的动画变成小菜一碟。这就像你的口袋里有一个专业的动画师！</p>
+<ul>
+<li><p><a href="https://lottiefiles.com/">https://lottiefiles.com/</a></p>
+</li>
+<li><p>例子：</p>
+</li>
+</ul>
+<pre><code class="language-js">lottie.loadAnimation({
+  container: document.getElementById(&quot;lottie-container&quot;),
+  renderer: &quot;svg&quot;,
+  loop: true,
+  autoplay: true,
+  path: &quot;data.json&quot;,
+});
+</code></pre>
+<p>此代码从 JSON 文件加载并播放 Lottie 动画。</p>
+<h3>6. Popmotion：最佳灵活性</h3>
+<p>Popmotion 就像变色龙 - 它可以轻松适应任何 JavaScript 环境。</p>
+<ul>
+<li><p><a href="https://popmotion.io">https://popmotion.io</a></p>
+</li>
+<li><p>例子：</p>
+</li>
+</ul>
+<pre><code class="language-js">animate({
+  from: 0,
+  to: 100,
+  onUpdate: (latest) =&gt; console.log(latest),
+});
+</code></pre>
+<p>这个简单的动画从 0 计数到 100，记录每个值。</p>
+<h3>7. Mo.js：动态图形变得简单</h3>
+<p>Mo.js 使创建动态图形就像用蜡笔绘图一样简单，但结果却更加壮观！</p>
+<ul>
+<li><p><a href="https://mojs.github.io/">https://mojs.github.io/</a></p>
+</li>
+<li><p>例子：</p>
+</li>
+</ul>
+<pre><code class="language-js">const burst = new mojs.Burst({
+  radius: { 0: 100 },
+  count: 5,
+  children: {
+    shape: &quot;circle&quot;,
+    fill: { cyan: &quot;yellow&quot; },
+    duration: 2000,
+  },
+});
+</code></pre>
+<p>此代码创建一个带有五个圆圈扩展和改变颜色的连拍动画。</p>
+<h3>8. Typed.js：让文本栩栩如生</h3>
+<p>Typed.js 为您的文本增添了人情味。这就像您的网站上有一个幽灵打字员！</p>
+<ul>
+<li><p><a href="https://mattboldt.com/demos/typed-js/">https://mattboldt.com/demos/typed-js/</a></p>
+</li>
+<li><p>例子：</p>
+</li>
+</ul>
+<pre><code class="language-js">new Typed(&quot;#element&quot;, {
+  strings: [&quot;Hello, World!&quot;, &quot;Welcome to my website!&quot;],
+  typeSpeed: 50,
+});
+</code></pre>
+<h3>9. AniJS：非编码人员的动画</h3>
+<p>AniJS 就像魔法一样 - 您无需编写任何代码即可创建动画！</p>
+<ul>
+<li><p><a href="https://anijs.github.io">https://anijs.github.io</a></p>
+</li>
+<li><p>例子：</p>
+</li>
+</ul>
+<pre><code class="language-html">&lt;div data-anijs=&quot;if: click, do: fadeIn, to: .target&quot;&gt;&lt;/div&gt;
+</code></pre>
+<p>此 HTML 属性会在单击时创建淡入动画。</p>
+<h3>10. Framer Motion：React 的动画超级英雄</h3>
+<p>Framer Motion 和 React 的结合就像花生酱和果冻一样。它是 React 工具包的完美补充。</p>
+<ul>
+<li><p><a href="https://www.framer.com/motion/">https://www.framer.com/motion/</a></p>
+</li>
+<li><p>例子：</p>
+</li>
+</ul>
+<pre><code class="language-html">&lt;motion.div
+  animate={{ x: 100 }}
+  transition={{ duration: 2 }}
+/&gt;
+</code></pre>
+<p>该 React 组件在 2 秒内向右移动 100 像素的动画。</p>
+<h3>11. ScrollMagic：基于滚动的动画大师</h3>
+<p>ScrollMagic 将滚动变成一次冒险。这就像当用户滚动浏览您的网站时制作一部迷你电影！</p>
+<ul>
+<li><p><a href="http://scrollmagic.io/">http://scrollmagic.io/</a></p>
+</li>
+<li><p>例子：</p>
+</li>
+</ul>
+<pre><code class="language-js">new ScrollMagic.Scene({
+  triggerElement: &quot;#trigger&quot;,
+  duration: 300
+})
+.setTween(&quot;#animate&quot;, {scale: 2.5})
+.addTo(controller);
+</code></pre>
+<p>这将创建一个随着用户滚动而缩放元素的动画。</p>
+<h3>12. Motion One：小而强大</h3>
+<p>Motion One 证明了小包装带来的好东西。它很轻，但具有强大的冲击力！</p>
+<ul>
+<li><p><a href="https://motion.dev/">https://motion.dev/</a></p>
+</li>
+<li><p>例子：</p>
+</li>
+</ul>
+<pre><code class="language-js">animate(&quot;#box&quot;, { x: 100 }, { duration: 1 });
+</code></pre>
+<p>这条简单的线在一秒钟内将一个盒子向右移动 100 像素。</p>
+
+            </div>
+            <div class="wrapper-right">
+              <ul>
+                <li>
+                  <svg t="1724940373953" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="7489" width="200" height="200"><path d="M156.862 567.733C117.449 544.533 91 501.673 91 452.633c0-39.369 17.383-76.73 47.5-102.09L401.002 129.51c64.147-54.013 157.866-54.013 222.013 0l262.501 221.033c56.388 47.48 63.606 131.679 16.121 188.062a133.416 133.416 0 0 1-34.489 29.108 36.31 36.31 0 0 1 1.755 11.187c0 241.345-115.528 356.862-356.894 356.862-241.366 0-356.895-115.517-356.895-356.862 0-3.896 0.614-7.648 1.749-11.167z m70.973 18.368c1.975 195.986 85.367 276.983 284.173 276.983 198.805 0 282.198-80.997 284.173-276.983H227.835z m348.36-400.998c-37.091-31.233-91.283-31.233-128.375 0l-262.5 221.033a60.787 60.787 0 0 0-21.635 46.498c0 33.573 27.219 60.789 60.794 60.789h575.057a60.797 60.797 0 0 0 46.502-21.633c21.628-25.68 18.34-64.029-7.342-85.654l-262.5-221.033z" fill="currentColor" p-id="7490"></path></svg>
+                </li>
+                <li>
+                  <svg t="1724941383990" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="24071" width="200" height="200"><path d="M929.797838 239.123886L545.204894 21.893337c-9.973631-5.959853-19.947262-8.027557-31.866968-8.027557s-21.893337 1.946074-31.866967 8.027557L96.878014 239.123886c-19.947262 11.919705-31.866968 31.866968-31.866968 55.828009v434.461099c0 21.893337 11.919705 43.786673 31.866968 55.828008l382.64687 217.23055c9.973631 5.959853 21.893337 8.027557 31.866968 8.027557 11.919705 0 21.893337-1.946074 31.866967-8.027557l382.646871-217.23055c19.947262-11.919705 31.866968-31.866968 31.866967-55.828008V294.830265c4.013778-21.893337-8.027557-43.786673-27.974819-55.706379zM901.944649 731.237439L523.311557 950.535693c-1.946074 1.946074-8.027557 5.959853-9.973631 5.959853-1.946074 0-8.027557-4.013778-9.973631-5.959853L124.731203 731.237439V292.884191L503.364295 73.707566c1.946074 0 8.027557-5.959853 9.973631-5.959852 1.946074 0 8.027557 4.013778 9.973631 5.959852L901.944649 292.884191v438.353248zM326.028269 376.565388c-13.987409-7.905927-31.866968-4.013778-39.894524 9.973631-8.027557 11.919705-4.013778 29.920893 9.973631 35.880746l185.363583 109.588312v199.229362s13.987409 19.947262 29.920893 19.947262c15.933484 0 29.920893-19.947262 29.920893-19.947262V532.008077l185.363582-109.588312c13.987409-8.027557 17.879558-23.961041 9.973631-35.880746-8.027557-11.919705-25.907115-17.879558-39.894524-9.973631l-187.309657 99.614681-183.417508-99.614681z m0 0" p-id="24072" fill="currentColor"></path></svg>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.34.1/min/vs/loader.js"></script>
+    <script src="../js/prism.min.js"></script>
+    <script src="../js/edit.js"></script>
+  </body>
+</html>

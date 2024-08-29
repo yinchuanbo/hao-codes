@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>25 个杀手级 JavaScript 单行代码</title>
+    <link rel="shortcut icon" href="code.svg" type="image/x-icon" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.34.1/min/vs/editor/editor.main.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/prism.css" />
+    <link rel="stylesheet" href="../css/edit.css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="wrapper__main">
+        <div class="wrapper__main_layout">
+          <div class="wrapper__main_layout-content">
+            <div class="wrapper-left">
+              <ul>
+                <li class=""><a title="5 种 JS 模式" href="/md/5 种 JS 模式.html">01 5 种 JS 模式</a></li><li class=""><a title="7 种位运算符的神奇用法" href="/md/7 种位运算符的神奇用法.html">02 7 种位运算符的神奇用法</a></li><li class="active"><a title="JS 单行代码集" href="/md/JS 单行代码集.html">03 JS 单行代码集</a></li><li class=""><a title="使用 JS 向现有 SVG 中添加元素" href="/md/使用 JS 向现有 SVG 中添加元素.html">04 使用 JS 向现有 SVG 中添加元素</a></li><li class=""><a title="实现鼠标滚轮缩放 SVG 内容" href="/md/实现鼠标滚轮缩放 SVG 内容.html">05 实现鼠标滚轮缩放 SVG 内容</a></li><li class=""><a title="速通 JS 性能优化" href="/md/速通 JS 性能优化.html">06 速通 JS 性能优化</a></li><li class=""><a title="高效检查 JS 对象中的键是否存在" href="/md/高效检查 JS 对象中的键是否存在.html">07 高效检查 JS 对象中的键是否存在</a></li>
+              </ul>
+            </div>
+            <div class="wrapper-content md">
+              <h1>25 个杀手级 JavaScript 单行代码</h1>
+              <ol>
+<li>将内容复制到剪贴板为了提高网站的用户体验，我们经常需要将内容复制到剪贴板，以便用户将其粘贴到指定位置。</li>
+</ol>
+<pre><code class="language-js">const copyToClipboard = (content) =&gt; navigator.clipboard.writeText(content);
+copyToClipboard(&quot;Hello fatfish&quot;);
+</code></pre>
+<ol start="2">
+<li>获取鼠标选择</li>
+</ol>
+<p>我们需要获取用户选择的内容</p>
+<pre><code class="language-js">const getSelectedText = () =&gt; window.getSelection().toString();
+getSelectedText();
+</code></pre>
+<ol start="3">
+<li>打乱数组</li>
+</ol>
+<pre><code class="language-js">const shuffleArray = (array) =&gt; array.sort(() =&gt; Math.random() - 0.5);
+shuffleArray([1, 2, 3, 4, -1, 0]); // [3, 1, 0, 2, 4, -1]
+</code></pre>
+<ol start="4">
+<li>将 rgba 转换为十六进制</li>
+</ol>
+<p>我们可以将 rgba 和十六进制颜色值相互转换。</p>
+<pre><code class="language-js">const rgbaToHex = (r, g, b) =&gt;
+  &quot;#&quot; +
+  [r, g, b].map((num) =&gt; parseInt(num).toString(16).padStart(2, &quot;0&quot;)).join(&quot;&quot;);
+rgbaToHex(0, 0, 0); // #000000rgbaToHex(255, 0, 127) //#ff007f
+</code></pre>
+<ol start="5">
+<li>将十六进制转换为 rgba</li>
+</ol>
+<pre><code class="language-js">const hexToRgba = hex =&gt; {  const [r, g, b] = hex.match(/\w\w/g).map(val =&gt; parseInt(val, 16))  return `rgba(${r}, ${g}, ${b}, 1)`;}
+hexToRgba(&#39;#000000&#39;) // rgba(0, 0, 0, 1)hexToRgba(&#39;#ff007f&#39;) // rgba(255, 0, 127, 1)
+</code></pre>
+<ol start="6">
+<li>获取多个数字的平均值</li>
+</ol>
+<p>使用 reduce 我们可以非常方便地获取一组数组的平均值。</p>
+<pre><code class="language-js">const average = (...args) =&gt; args.reduce((a, b) =&gt; a + b, 0) / args.length;
+average(0, 1, 2, -1, 9, 10); // 3.5
+</code></pre>
+<ol start="7">
+<li>检查数字是偶数还是奇数</li>
+</ol>
+<p>你如何判断数字是奇数还是偶数？</p>
+<pre><code class="language-js">const isEven = (num) =&gt; num % 2 === 0;
+isEven(2); // trueisEven(1) // false
+</code></pre>
+<ol start="8">
+<li>删除数组中的重复元素</li>
+</ol>
+<p>要删除数组中的重复元素，使用 Set 会变得非常容易。</p>
+<pre><code class="language-js">const uniqueArray = (arr) =&gt; [...new Set(arr)];
+uniqueArray([1, 1, 2, 3, 4, 5, -1, 0]); // [1, 2, 3, 4, 5, -1, 0]
+</code></pre>
+<ol start="9">
+<li>检查对象是否为空对象</li>
+</ol>
+<pre><code class="language-js">const isEmpty = (obj) =&gt;
+  Reflect.ownKeys(obj).length === 0 &amp;&amp; obj.constructor === Object;
+isEmpty({}); // trueisEmpty({ name: &#39;fatfish&#39; }) // false
+</code></pre>
+<ol start="10">
+<li>反转字符串</li>
+</ol>
+<pre><code class="language-js">const reverseStr = (str) =&gt; str.split(&quot;&quot;).reverse().join(&quot;&quot;);
+reverseStr(&quot;fatfish&quot;); // hsiftaf
+</code></pre>
+<ol start="11">
+<li>计算两个日期之间的间隔</li>
+</ol>
+<pre><code class="language-js">const dayDiff = (d1, d2) =&gt;
+  Math.ceil(Math.abs(d1.getTime() - d2.getTime()) / 86400000);
+dayDiff(new Date(&quot;2023-06-23&quot;), new Date(&quot;1997-05-31&quot;)); // 9519
+</code></pre>
+<ol start="12">
+<li>找出日期所在的年份</li>
+</ol>
+<pre><code class="language-js">const dayInYear = (d) =&gt;
+  Math.floor((d - new Date(d.getFullYear(), 0, 0)) / 1000 / 60 / 60 / 24);
+dayInYear(new Date(&quot;2023/06/23&quot;)); // 174
+</code></pre>
+<ol start="13">
+<li>将字符串的首字母大写</li>
+</ol>
+<pre><code class="language-js">const capitalize = (str) =&gt; str.charAt(0).toUpperCase() + str.slice(1);
+capitalize(&quot;hello fatfish&quot;); // Hello fatfish
+</code></pre>
+<ol start="14">
+<li>生成指定长度的随机字符串</li>
+</ol>
+<pre><code class="language-js">const generateRandomString = (length) =&gt;
+  [...Array(length)].map(() =&gt; Math.random().toString(36)[2]).join(&quot;&quot;);
+generateRandomString(12); // cysw0gfljoyxgenerateRandomString(12) // uoqaugnm8r4s
+</code></pre>
+<ol start="15">
+<li>获取两个整数之间的随机整数</li>
+</ol>
+<pre><code class="language-js">const random = (min, max) =&gt; Math.floor(Math.random() * (max - min + 1) + min);
+random(1, 100); // 27
+random(1, 100); // 84
+random(1, 100); // 55
+</code></pre>
+<ol start="16">
+<li>指定数字四舍五入</li>
+</ol>
+<pre><code class="language-js">const round = (n, d) =&gt; Number(Math.round(n + &quot;e&quot; + d) + &quot;e-&quot; + d);
+round(3.1415926, 3); //3.142
+round(3.1415926, 1); //3.1
+</code></pre>
+<ol start="17">
+<li>清除所有 cookie</li>
+</ol>
+<pre><code class="language-js">const clearCookies = document.cookie
+  .split(&quot;;&quot;)
+  .forEach(
+    (cookie) =&gt;
+      (document.cookie = cookie
+        .replace(/^ +/, &quot;&quot;)
+        .replace(/=.*/, `=;expires=${new Date(0).toUTCString()};path=/`))
+  );
+</code></pre>
+<ol start="18">
+<li>检测是否为暗模式</li>
+</ol>
+<pre><code class="language-js">const isDarkMode =
+  window.matchMedia &amp;&amp;
+  window.matchMedia(&quot;(prefers-color-scheme: dark)&quot;).matches;
+console.log(isDarkMode);
+</code></pre>
+<ol start="19">
+<li>滚动到页面顶部</li>
+</ol>
+<pre><code class="language-js">const goToTop = () =&gt; window.scrollTo(0, 0);
+goToTop();
+</code></pre>
+<ol start="20">
+<li>确定是否为 Apple 设备</li>
+</ol>
+<pre><code class="language-js">const isAppleDevice = () =&gt; /Mac|iPod|iPhone|iPad/.test(navigator.platform);
+isAppleDevice();
+</code></pre>
+<ol start="21">
+<li>随机布尔值</li>
+</ol>
+<pre><code class="language-js">const randomBoolean = () =&gt; Math.random() &gt;= 0.5;
+randomBoolean();
+</code></pre>
+<ol start="22">
+<li>获取变量的类型</li>
+</ol>
+<pre><code class="language-js">const typeOf = (obj) =&gt;
+  Object.prototype.toString.call(obj).slice(8, -1).toLowerCase();
+typeOf(&quot;&quot;); // string
+typeOf(0); // number
+typeOf(); // undefined
+typeOf(null); // null
+typeOf({}); // object
+typeOf([]); // array
+typeOf(0); // number
+typeOf(() =&gt; {}); // function
+</code></pre>
+<ol start="23">
+<li>确定当前选项卡是否处于活动状态</li>
+</ol>
+<pre><code class="language-js">const checkTabInView = () =&gt; !document.hidden;
+</code></pre>
+<ol start="24">
+<li>检查元素是否处于焦点</li>
+</ol>
+<pre><code class="language-js">const isFocus = (ele) =&gt; ele === document.activeElement;
+</code></pre>
+<ol start="25">
+<li>随机 IP</li>
+</ol>
+<pre><code class="language-js">const generateRandomIP = () =&gt; {
+  return Array.from({ length: 4 }, () =&gt; Math.floor(Math.random() * 256)).join(
+    &quot;.&quot;
+  );
+};
+generateRandomIP(); // 220.187.184.113
+generateRandomIP(); // 254.24.179.151
+</code></pre>
+
+            </div>
+            <div class="wrapper-right">
+              <ul>
+                <li>
+                  <svg t="1724940373953" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="7489" width="200" height="200"><path d="M156.862 567.733C117.449 544.533 91 501.673 91 452.633c0-39.369 17.383-76.73 47.5-102.09L401.002 129.51c64.147-54.013 157.866-54.013 222.013 0l262.501 221.033c56.388 47.48 63.606 131.679 16.121 188.062a133.416 133.416 0 0 1-34.489 29.108 36.31 36.31 0 0 1 1.755 11.187c0 241.345-115.528 356.862-356.894 356.862-241.366 0-356.895-115.517-356.895-356.862 0-3.896 0.614-7.648 1.749-11.167z m70.973 18.368c1.975 195.986 85.367 276.983 284.173 276.983 198.805 0 282.198-80.997 284.173-276.983H227.835z m348.36-400.998c-37.091-31.233-91.283-31.233-128.375 0l-262.5 221.033a60.787 60.787 0 0 0-21.635 46.498c0 33.573 27.219 60.789 60.794 60.789h575.057a60.797 60.797 0 0 0 46.502-21.633c21.628-25.68 18.34-64.029-7.342-85.654l-262.5-221.033z" fill="currentColor" p-id="7490"></path></svg>
+                </li>
+                <li>
+                  <svg t="1724941383990" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="24071" width="200" height="200"><path d="M929.797838 239.123886L545.204894 21.893337c-9.973631-5.959853-19.947262-8.027557-31.866968-8.027557s-21.893337 1.946074-31.866967 8.027557L96.878014 239.123886c-19.947262 11.919705-31.866968 31.866968-31.866968 55.828009v434.461099c0 21.893337 11.919705 43.786673 31.866968 55.828008l382.64687 217.23055c9.973631 5.959853 21.893337 8.027557 31.866968 8.027557 11.919705 0 21.893337-1.946074 31.866967-8.027557l382.646871-217.23055c19.947262-11.919705 31.866968-31.866968 31.866967-55.828008V294.830265c4.013778-21.893337-8.027557-43.786673-27.974819-55.706379zM901.944649 731.237439L523.311557 950.535693c-1.946074 1.946074-8.027557 5.959853-9.973631 5.959853-1.946074 0-8.027557-4.013778-9.973631-5.959853L124.731203 731.237439V292.884191L503.364295 73.707566c1.946074 0 8.027557-5.959853 9.973631-5.959852 1.946074 0 8.027557 4.013778 9.973631 5.959852L901.944649 292.884191v438.353248zM326.028269 376.565388c-13.987409-7.905927-31.866968-4.013778-39.894524 9.973631-8.027557 11.919705-4.013778 29.920893 9.973631 35.880746l185.363583 109.588312v199.229362s13.987409 19.947262 29.920893 19.947262c15.933484 0 29.920893-19.947262 29.920893-19.947262V532.008077l185.363582-109.588312c13.987409-8.027557 17.879558-23.961041 9.973631-35.880746-8.027557-11.919705-25.907115-17.879558-39.894524-9.973631l-187.309657 99.614681-183.417508-99.614681z m0 0" p-id="24072" fill="currentColor"></path></svg>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.34.1/min/vs/loader.js"></script>
+    <script src="../js/prism.min.js"></script>
+    <script src="../js/edit.js"></script>
+  </body>
+</html>

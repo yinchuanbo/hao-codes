@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>最新 ESLint 9.0 + vue3.0 + TS 配置</title>
+    <link rel="shortcut icon" href="code.svg" type="image/x-icon" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.34.1/min/vs/editor/editor.main.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/prism.css" />
+    <link rel="stylesheet" href="../css/edit.css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="wrapper__main">
+        <div class="wrapper__main_layout">
+          <div class="wrapper__main_layout-content">
+            <div class="wrapper-left">
+              <ul>
+                <li class=""><a title="前端构建系统浅析" href="/md/前端构建系统浅析.html">01 前端构建系统浅析</a></li><li class="active"><a title="最新 ESLint 9.0 + vue3.0 + TS 配置" href="/md/最新 ESLint 9.0 + vue3.0 + TS 配置.html">02 最新 ESLint 9.0 + vue3.0 + TS 配置</a></li><li class=""><a title="检查前端项目和 node 项目中未被使用的依赖包" href="/md/检查前端项目和 node 项目中未被使用的依赖包.html">03 检查前端项目和 node 项目中未被使用的依赖包</a></li>
+              </ul>
+            </div>
+            <div class="wrapper-content md">
+              <h1>最新 ESLint 9.0 + vue3.0 + TS 配置</h1>
+              <h3>package.json 文件</h3>
+<p>eslint 相关的包</p>
+<ol>
+<li>@eslint/js</li>
+<li>eslint</li>
+<li>eslint-plugin-vue</li>
+<li>typescript-eslint</li>
+<li>vite-plugin-eslint</li>
+</ol>
+<pre><code class="language-json">{
+  &quot;name&quot;: &quot;mzong-books&quot;,
+  &quot;private&quot;: true,
+  &quot;version&quot;: &quot;0.0.0&quot;,
+  &quot;type&quot;: &quot;module&quot;,
+  &quot;scripts&quot;: {
+    &quot;dev&quot;: &quot;vite&quot;,
+    &quot;build&quot;: &quot;vue-tsc &amp;&amp; vite build&quot;,
+    &quot;preview&quot;: &quot;vite preview&quot;
+  },
+  &quot;dependencies&quot;: {
+    &quot;vue&quot;: &quot;^3.3.11&quot;
+  },
+  &quot;devDependencies&quot;: {
+    &quot;@eslint/js&quot;: &quot;^9.1.1&quot;, // eslint官方包
+    &quot;@types/node&quot;: &quot;^20.10.5&quot;,
+    &quot;@vitejs/plugin-vue&quot;: &quot;^4.5.2&quot;,
+    &quot;eslint&quot;: &quot;^9.1.1&quot;, // eslint官方包
+    &quot;eslint-plugin-vue&quot;: &quot;^9.25.0&quot;, // Vue.js 的官方 ESLint 插件。这个插件允许我们使用 ESLint 检查文件的`&lt;template&gt;`和，以及文件中的 Vue 代码。`&lt;script&gt;``.vue``.js`
+    &quot;typescript&quot;: &quot;^5.2.2&quot;,
+    &quot;typescript-eslint&quot;: &quot;^7.7.1&quot;, // ts-eslint解析器，使 eslint 可以解析 ts 语法
+    &quot;vite&quot;: &quot;^5.0.8&quot;,
+    &quot;vite-plugin-eslint&quot;: &quot;^1.8.1&quot;, //  用于vite启动的时候，校验eslint，会在控制台显示具体信息
+    &quot;vue-tsc&quot;: &quot;^1.8.25&quot;
+  }
+}
+</code></pre>
+<h3>vite.config.ts 文件</h3>
+<p>这里主要是引用 <code>vite-plugin-eslint</code>，使 vite 启动的时候可以校验 eslint 信息</p>
+<pre><code class="language-js">import { defineConfig } from &quot;vite&quot;;
+import vue from &quot;@vitejs/plugin-vue&quot;;
+import eslint from &quot;vite-plugin-eslint&quot;;
+
+// https://vitejs.dev/config/
+export default defineConfig({
+  plugins: [
+    vue(),
+    {
+      // do not fail on serve (i.e. local development)
+      ...eslint({
+        failOnWarning: false,
+        failOnError: false,
+      }),
+      apply: &quot;serve&quot;,
+      enforce: &quot;post&quot;,
+    },
+  ],
+});
+</code></pre>
+<h3>eslint.config.js 文件</h3>
+<pre><code class="language-js">// 引入vue模版的eslint
+import pluginVue from &quot;eslint-plugin-vue&quot;;
+import eslint from &quot;@eslint/js&quot;;
+// ts-eslint解析器，使 eslint 可以解析 ts 语法
+import tseslint from &quot;typescript-eslint&quot;;
+// vue文件解析器
+import vueParser from &quot;vue-eslint-parser&quot;;
+export default tseslint.config({
+  // tseslint.config添加了extends扁平函数，直接用。否则是eslint9.0版本是没有extends的
+  extends: [
+    eslint.configs.recommended,
+    ...tseslint.configs.recommended,
+    ...pluginVue.configs[&quot;flat/essential&quot;], // vue3推荐的eslint配置
+  ],
+  languageOptions: {
+    parser: vueParser, // 使用vue解析器，这个可以识别vue文件
+    parserOptions: {
+      parser: tseslint.parser, // 在vue文件上使用ts解析器
+      sourceType: &quot;module&quot;,
+    },
+  },
+  rules: {
+    semi: [&quot;warn&quot;, &quot;never&quot;],
+    &quot;comma-dangle&quot;: [&quot;error&quot;, &quot;never&quot;],
+    &quot;no-unused-vars&quot;: 2,
+    &quot;space-before-function-paren&quot;: 0,
+    &quot;generator-star-spacing&quot;: &quot;off&quot;,
+    &quot;object-curly-spacing&quot;: 0, // 强制在大括号中使用一致的空格
+    &quot;array-bracket-spacing&quot;: 0, // 方括号
+  },
+});
+</code></pre>
+<h3>校验</h3>
+<p>在组件上随便一个规则</p>
+<pre><code class="language-html">&lt;script setup lang=&quot;ts&quot;&gt;
+import { ref } from &#39;vue&#39;
+const text = { a: 1, b: &quot;2&quot; }
+&lt;/script&gt;
+</code></pre>
+
+            </div>
+            <div class="wrapper-right">
+              <ul>
+                <li>
+                  <svg t="1724940373953" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="7489" width="200" height="200"><path d="M156.862 567.733C117.449 544.533 91 501.673 91 452.633c0-39.369 17.383-76.73 47.5-102.09L401.002 129.51c64.147-54.013 157.866-54.013 222.013 0l262.501 221.033c56.388 47.48 63.606 131.679 16.121 188.062a133.416 133.416 0 0 1-34.489 29.108 36.31 36.31 0 0 1 1.755 11.187c0 241.345-115.528 356.862-356.894 356.862-241.366 0-356.895-115.517-356.895-356.862 0-3.896 0.614-7.648 1.749-11.167z m70.973 18.368c1.975 195.986 85.367 276.983 284.173 276.983 198.805 0 282.198-80.997 284.173-276.983H227.835z m348.36-400.998c-37.091-31.233-91.283-31.233-128.375 0l-262.5 221.033a60.787 60.787 0 0 0-21.635 46.498c0 33.573 27.219 60.789 60.794 60.789h575.057a60.797 60.797 0 0 0 46.502-21.633c21.628-25.68 18.34-64.029-7.342-85.654l-262.5-221.033z" fill="currentColor" p-id="7490"></path></svg>
+                </li>
+                <li>
+                  <svg t="1724941383990" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="24071" width="200" height="200"><path d="M929.797838 239.123886L545.204894 21.893337c-9.973631-5.959853-19.947262-8.027557-31.866968-8.027557s-21.893337 1.946074-31.866967 8.027557L96.878014 239.123886c-19.947262 11.919705-31.866968 31.866968-31.866968 55.828009v434.461099c0 21.893337 11.919705 43.786673 31.866968 55.828008l382.64687 217.23055c9.973631 5.959853 21.893337 8.027557 31.866968 8.027557 11.919705 0 21.893337-1.946074 31.866967-8.027557l382.646871-217.23055c19.947262-11.919705 31.866968-31.866968 31.866967-55.828008V294.830265c4.013778-21.893337-8.027557-43.786673-27.974819-55.706379zM901.944649 731.237439L523.311557 950.535693c-1.946074 1.946074-8.027557 5.959853-9.973631 5.959853-1.946074 0-8.027557-4.013778-9.973631-5.959853L124.731203 731.237439V292.884191L503.364295 73.707566c1.946074 0 8.027557-5.959853 9.973631-5.959852 1.946074 0 8.027557 4.013778 9.973631 5.959852L901.944649 292.884191v438.353248zM326.028269 376.565388c-13.987409-7.905927-31.866968-4.013778-39.894524 9.973631-8.027557 11.919705-4.013778 29.920893 9.973631 35.880746l185.363583 109.588312v199.229362s13.987409 19.947262 29.920893 19.947262c15.933484 0 29.920893-19.947262 29.920893-19.947262V532.008077l185.363582-109.588312c13.987409-8.027557 17.879558-23.961041 9.973631-35.880746-8.027557-11.919705-25.907115-17.879558-39.894524-9.973631l-187.309657 99.614681-183.417508-99.614681z m0 0" p-id="24072" fill="currentColor"></path></svg>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.34.1/min/vs/loader.js"></script>
+    <script src="../js/prism.min.js"></script>
+    <script src="../js/edit.js"></script>
+  </body>
+</html>
